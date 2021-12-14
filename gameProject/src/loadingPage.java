@@ -15,7 +15,7 @@ public class loadingPage extends JFrame implements Runnable{
 
 
     public loadingPage() {
-        background = new JLabel(new ImageIcon("resources/loading.png"));
+        background = new JLabel(new ImageIcon("src/resources/loading.png"));
         this.add(BorderLayout.NORTH, background);
 
         jpb = new JProgressBar();
@@ -25,9 +25,8 @@ public class loadingPage extends JFrame implements Runnable{
 
         this.setSize(385,131);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(1);
+        this.setDefaultCloseOperation(3);
         this.setUndecorated(true);
-        //this.setIconImage(new ImageIcon("resources/loading.png").getImage());
         this.setVisible(true);
     }
 
@@ -42,13 +41,18 @@ public class loadingPage extends JFrame implements Runnable{
         int [] values = {0,10,20,30,40,50,60,70,80,90,100};
         for(int i=0; i<values.length; i++){
             jpb.setValue(values[i]);
-
-            try {
+            try{
                 Thread.sleep(200);
+                if(values[i]==100){
+                    dispose();
+                    new gameFrame();
+
+                }
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
         }
     }
 
